@@ -39,7 +39,7 @@ public interface JeepSalesController {
                   mediaType = "application/json")),
           @ApiResponse(
               responseCode = "404", 
-              description = "No jeeps were foind with the input criteria.", 
+              description = "No jeeps were found with the input criteria.", 
               content = @Content(
                   mediaType = "application/json")),
           @ApiResponse(
