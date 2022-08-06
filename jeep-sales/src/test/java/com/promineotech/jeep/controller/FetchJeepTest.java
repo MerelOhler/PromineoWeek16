@@ -54,7 +54,6 @@ class FetchJeepTest extends FetchJeepTestSupport{
     List<Jeep> expected = buildExpected();
     assertThat(response.getBody()).isEqualTo(expected);
     
-    
   }
 
   protected List<Jeep> buildExpected() {
