@@ -3,6 +3,7 @@ package com.promineotech.jeep.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -51,9 +52,10 @@ class FetchJeepTest extends FetchJeepTestSupport{
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     
     //And: the actual list is the same as the expected list
+    List<Jeep> actual = response.getBody();
     List<Jeep> expected = buildExpected();
-    assertThat(response.getBody()).isEqualTo(expected);
-    
+
+    assertThat(actual).isEqualTo(expected);    
   }
 
   protected List<Jeep> buildExpected() {
@@ -63,18 +65,21 @@ class FetchJeepTest extends FetchJeepTestSupport{
     list.add(Jeep.builder()
         .modelId(JeepModel.WRANGLER)
         .trimLevel("Sport")
-        .numDoors(2)
+        .numDoors(4)
         .wheelSize(17)
-        .basePrice(new BigDecimal(28475.00))
+        .basePrice(new BigDecimal("31975.00"))
         .build());
     list.add(Jeep.builder()
         .modelId(JeepModel.WRANGLER)
         .trimLevel("Sport")
-        .numDoors(4)
+        .numDoors(2)
         .wheelSize(17)
-        .basePrice(new BigDecimal(31975.00))
+        .basePrice(new BigDecimal("28475.00"))
         .build());
     //@formatter:on
+    
+    Collections.sort(list);
+    
     return list;
   }
 
