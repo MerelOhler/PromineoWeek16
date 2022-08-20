@@ -1,6 +1,8 @@
 package com.promineotech.jeep.controller;
 
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+@Validated
 @RequestMapping("/orders")
 @OpenAPIDefinition(info = @Info(title = "Jeep Order Service"), 
   servers = { @Server(url = "http://localhost:8080", description = "Local server.")})
@@ -58,7 +61,7 @@ public interface JeepOrderController {
 
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
-  Order createOrder(@RequestBody OrderRequest orderRequest);
+  Order createOrder(@Valid @RequestBody OrderRequest orderRequest);
 
   //@formatter:on
 }
